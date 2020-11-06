@@ -1,6 +1,5 @@
 <?php
 
-header('Access-Control-Allow-Origin:*');
 
 $superheroes = [
   [
@@ -65,10 +64,31 @@ $superheroes = [
   ], 
 ];
 
+filter_input(INPUT_REQUEST,'q',FILTER_SANITIZE_STRING);
+$q = $_REQUEST['q'];
+$c = 0;
+if ($q !== ""){
+    foreach($superheroes as $superhero){
+        if($q == $superhero["alias"] or $q == $superhero["name"]){
+            echo "<h3>".$superhero['alias']."</h3>";
+            echo "<h4>".$superhero['name']."</h4>";
+            echo "<p>".$superhero['biography']."</p>";
+            $c++;
+        }
+        if($superhero["id"] == 10 and $q !==$superhero["alias"] and $q !== $superhero["name"] and $c == 0){
+            $message = "SUPERHERO NOT FOUND";
+            echo "<font color=red>".$message. "</font>";
+            }
+        }
+        
+    }else{
+    foreach($superheroes as $superhero){
+        echo "<li>".$superhero['alias']."</li>";
+        }
+    }
+
+
+
 ?>
 
-<ul>
-<?php foreach ($superheroes as $superhero): ?>
-  <li><?= $superhero['alias']; ?></li>
-<?php endforeach; ?>
-</ul>
+

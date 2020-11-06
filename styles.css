@@ -1,0 +1,22 @@
+.top{
+    background-color:blue;
+    text-align: center;
+    color: white;
+    padding: 10px;
+}
+
+
+input{
+    width: 1000px;
+}
+
+.center{
+    align-items: center;
+    background-color: gray;
+}
+
+.btn{
+    height: 30px;
+    background-color: crimson;
+    color: white;
+}
